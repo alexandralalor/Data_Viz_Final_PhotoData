@@ -23,15 +23,15 @@ ui <- fluidPage(
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
       sidebarPanel(
-        h3("Color change of droughted Ponderosa Pine seedlings over time"),
-        p("Data collected using photographs from August 26 2021 to November 19 2021, as part of Alexandra Lalor's MS project")
+        h3("Color change of droughted tree seedlings over time"),
+        p("Data collected using photographs from August 26 2021 to November 19 2021")
         ),
       # Show a plot of the generated distribution
       mainPanel(
         tabsetPanel(
           tabPanel("Colors", 
                    selectInput("PonderosaPine",
-                               "Select seedling:",
+                               "Select Ponderosa Pine seedling:",
                                choices = tree_rgb_all %>% distinct(SpeciesID)
                    ),
                    sliderInput("week",
@@ -51,7 +51,6 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-
     output$timelinePlot <- renderPlot({
       tree_rgb_all %>% 
         filter(SpeciesID == input$PonderosaPine & Week == input$week) %>% 
