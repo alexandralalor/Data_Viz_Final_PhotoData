@@ -29,7 +29,7 @@ opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ### Background
 
-As climate change progresses, disturbances in forested ecosystems will become a more powerful force of ecosystem change. Extreme fire events and widespread drought have already initiated unprecedented tree die-off at large spatial scales. In parallel, heatwaves and droughts will become more prevalent and co-occurring with climate change. It is key to refine current understanding of tree population adaptations to drought under chronic warming and acute heatwaves. While heatwaves and droughts will be exacerbated under climate change, it is largely unknown how the co-occurrence of heatwaves will impact seedling establishment and forest recovery. The purpose of this proposal is to develop an experimental design to determine the impact of heatwaves on mortality rates of droughted tree seedlings.
+As climate change progresses, disturbances in forested ecosystems will become a more powerful force of ecosystem change . Heatwaves and droughts will become more prevalent and co-occurring with climate change, yet it is largely unknown how this will impact seedling establishment and forest regeneration. The purpose of this proposal is to develop an experimental design to determine the impact of heatwaves on mortality rates of droughted tree seedlings.
 
 
 
@@ -54,9 +54,9 @@ As climate change progresses, disturbances in forested ecosystems will become a 
 
 
 
-### Treatments Vizualized
+### Treatments
 
-A subset of 10 plants (out of 250) were included in this visualization process, with the goal of figuring out the workflow of quantifying colors and exploring potential useful visualizations. 
+A subset of 10 plants (out of 250) were included in this visualization process, with the goal of refining the workflow of quantifying colors and exploring potential useful visualizations. Photos were taken of these plants every week for 13 weeks, until all plants in the study had died from drought.
 
 These 10 plants were divided into two groups, based on the experimental design.
 
@@ -64,7 +64,6 @@ These 10 plants were divided into two groups, based on the experimental design.
 
 * Drought + heatwave (5 plants)
 
-Plants were monitored over 13 weeks.
 
 
 
@@ -86,6 +85,8 @@ How can I construct a code to take an image of a plant, isolate the needles, and
 
 For this visualization, I took a subset of 10 plants, tracked with photographs over 13 weeks (from August 26 2021 to November 19 2021).
 
+Below is a photo of one plant as an example, after the background has been removed using a Gaussian Mixture Model. The goal of this was to leave only plant-tissue pixels in the photo.
+
 ```{r}
 pic <- "data_raw/final_project/Photos/August 26 2021/Final/PIPO10 Ambient+HW Drought DSC00273_segmented_crop.jpg"
 pic1 <- image_read(pic)
@@ -94,6 +95,8 @@ image_scale(pic1)
 
 
 ### Pixel Data
+
+Using the processed photos, I then worked with R to extract the plant-tissue pixels and put color information in a data frame.
 
 I have three sets of data, which are summarized to different levels
 
@@ -116,6 +119,8 @@ tree_rgb_sum_filter_all <- read.csv("data_raw/final_project/tree_rgb_sum_filter/
 
 # Viz 1
 
+### 3D (and 2D) scatterplot of total pixel colors plotted on red-green-blue axes 
+
 Let's start by looking at the total data.
 
 ...I couldn't add this file to github because it's too big, but if you'd like to download the data it looks really cool as a 3D plot!
@@ -130,7 +135,7 @@ Code is below if you download the total data separately, add file to data_raw/fi
 ```
 
 
-Let's instead look at summarized data, because 12,000,000 data points is a lot!
+Let's instead look at summarized data, because 12 million data points is a lot!
 
 ```{r, fig.height=7, fig.width=9}
 #Summarized data: tree_rgb_sum_all
@@ -162,6 +167,8 @@ colordistance::plotPixels(pic, lower = NULL, upper = NULL, n = 5000)
 
 
 # Viz 2
+
+### Bar chart showing plant color variation over time (as plants die)
 
 Let's look again at summarized data.
 
@@ -200,6 +207,8 @@ tree_rgb_sum_viz %>%
 
 
 # Viz 3
+
+### Line graph showing leaf area change over time
 
 Let's look at filtered data now.
 
