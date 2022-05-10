@@ -1,18 +1,9 @@
 ---
-title: "Data Viz Final Project"
+title: "Heatwave Color Visualization"
 author: "Alexandra Lalor"
-date: '2022-05-06'
-output:
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
-  html_document:
-    theme: readable
-    highlight: breezedark
-    toc: yes
-    toc_depth: 3
-    toc_float:
-      smooth_scroll: yes
+date: '2022-05-10'
+output: pdf_document
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
@@ -93,7 +84,7 @@ Below is a photo of one plant as an example, after the background has been remov
 ```{r}
 pic <- "data_raw/final_project/Photos/August 26 2021/Final/PIPO10 Ambient+HW Drought DSC00273_segmented_crop.jpg"
 pic1 <- image_read(pic)
-image_scale(pic1)
+image_scale(pic1, "500")
 ```
 
 
@@ -260,4 +251,3 @@ tree_rgb_sum_filter_viz %>%
   theme_minimal()
 
 ```
-
